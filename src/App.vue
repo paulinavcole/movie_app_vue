@@ -1,5 +1,8 @@
 <script setup>
+import { ref } from 'vue';
  import BreakingBadCardsVue from './components/BreakingBadCards.vue';
+ import RickMortyCardsVue from './components/RickMortyCards.vue';
+
 </script>
 
 <template>
@@ -15,5 +18,7 @@
         </div>
       </template>
     </Suspense>
+    <RickMortyCardsVue />
+   
   </main>
 </template>

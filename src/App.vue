@@ -13,9 +13,10 @@ const isBreakingBad = ref(true);
     :isBreakingBad="isBreakingBad"
     @selectShow="isBreakingBad = !isBreakingBad"
   />
-    <BreakingBadCardsSuspenseVue v-if="isBreakingBad" />
-    <RickMortyCardsVue v-else />
-   
+  
+  <KeepAlive>
+    <Component :is="isBreakingBad ? BreakingBadCardsSuspenseVue : RickMortyCardsVue"  />
+  </KeepAlive>
   </main>
 </template>
 

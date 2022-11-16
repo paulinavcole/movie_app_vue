@@ -14,14 +14,14 @@
 
     watch(page, async () => {
         const res = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page.value}`);
-        characters.value = res.data
+        characters.value = res.data.results
     })
 
 </script>
 
 <template>
   <div class="container">
-    <div class="cards">
+    <div v-if="characters" class="cards">
         <Card 
             v-for="character in characters"
             :key="character.id"
@@ -31,6 +31,9 @@
         <p>{{ character.location.name }}</p>
     
     </Card>
+    </div>
+    <div v-else class="cards spinner">
+        <NSpin size="large"/>
     </div>
     <div class="button-container">
         <button @click="page--">&lt</button>

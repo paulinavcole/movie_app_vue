@@ -1,24 +1,30 @@
 <script setup>
-import { ref } from 'vue';
- import BreakingBadCardsVue from './components/BreakingBadCards.vue';
+ import { ref } from 'vue';
+ import BreakingBadCardsSuspenseVue from './components/BreakingBadCardsSuspense.vue';
  import RickMortyCardsVue from './components/RickMortyCards.vue';
+ import HeroVue from './components/Hero.vue';
 
+const isBreakingBad = ref(true);
 </script>
 
 <template>
   <main>
-    <h1>HERO</h1>
-    <Suspense>
-      <template #default>
-        <BreakingBadCardsVue />
-      </template>
-      <template #fallback>
-        <div>
-          <p>Loading...</p>
-        </div>
-      </template>
-    </Suspense>
-    <RickMortyCardsVue />
+    <HeroVue 
+    :isBreakingBad="isBreakingBad"
+    @selectShow="isBreakingBad = !isBreakingBad"
+  />
+    <BreakingBadCardsSuspenseVue v-if="isBreakingBad" />
+    <RickMortyCardsVue v-else />
    
   </main>
 </template>
+
+<style scoped>
+.cards{
+  height: 700px;
+  background-color: rgb(27, 26, 26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

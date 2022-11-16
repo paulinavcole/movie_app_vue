@@ -22,14 +22,15 @@
 <template>
   <div class="container">
     <div class="cards">
-        {{ characters }}
-        <!-- <Card 
+        <Card 
             v-for="character in characters"
-            :key="character.char_id"
-            :image="character.img"
+            :key="character.id"
+            :image="character.image"
             :name="character.name"
-            :occupation="character.occupation"
-        /> -->
+        >
+        <p>{{ character.location.name }}</p>
+    
+    </Card>
     </div>
     <div class="button-container">
         <button @click="page--">&lt</button>
@@ -49,7 +50,6 @@
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    height: 700px
 }
 .cards h3 {
     font-weight: bold;

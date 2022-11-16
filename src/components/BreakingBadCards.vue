@@ -19,13 +19,18 @@
 <template>
   <div class="container">
     <div class="cards">
-        <Card 
+        <Card
             v-for="character in characters"
             :key="character.char_id"
             :image="character.img"
             :name="character.name"
             :occupation="character.occupation"
-        />
+        >
+        <div class="jobs">
+          <p v-for="(job, index) in character.occupation" :key="job">
+            {{ job }}<span v-if="index < character.occupation.length-1">,&nbsp</span></p>
+        </div>
+        </Card>
     </div>
     <div class="button-container">
         <button @click="page--">&lt</button>
@@ -75,4 +80,7 @@
     justify-content: center;
 }
 
+p{
+    font-size: 10px;
+}
 </style>
